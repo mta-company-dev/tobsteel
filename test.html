@@ -1,0 +1,3813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>TOBSTEEL — Stainless Steel Fasteners</title>
+
+    <meta
+        name="description"
+        content="TOBSTEEL — Stainless steel fasteners and highly corrosion-resistant connecting elements for demanding applications."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+
+        /* =====================================================
+           ROOT
+        ===================================================== */
+
+        :root {
+            --green: #006b4f;
+            --green-dark: #004d3a;
+            --green-deep: #063c30;
+            --green-soft: #e8f3ef;
+
+            --black: #15201c;
+            --text: #24302b;
+            --muted: #6d7772;
+
+            --bg: #f5f7f5;
+            --white: #ffffff;
+
+            --border: #e1e6e3;
+
+            --radius: 22px;
+
+            --container: 1280px;
+        }
+
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            color: var(--text);
+            background: var(--bg);
+            overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+        }
+
+        .container {
+            width: min(
+                var(--container),
+                calc(100% - 60px)
+            );
+
+            margin-inline: auto;
+        }
+
+
+        /* =====================================================
+           PAGE LOADER
+        ===================================================== */
+
+        .loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+
+            background: var(--green-deep);
+
+            display: grid;
+            place-items: center;
+
+            transition:
+                opacity .7s ease,
+                visibility .7s ease;
+        }
+
+        .loader.hide {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-inner {
+            text-align: center;
+            color: white;
+        }
+
+        .loader-logo {
+            width: 58px;
+            height: 58px;
+
+            border: 2px solid rgba(255,255,255,.25);
+            border-top-color: white;
+
+            border-radius: 50%;
+
+            animation: spin 1s linear infinite;
+
+            margin-inline: auto;
+            margin-bottom: 22px;
+        }
+
+        .loader span {
+            font-size: 13px;
+            letter-spacing: 4px;
+            font-weight: 700;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+
+        /* =====================================================
+           TOP BAR
+        ===================================================== */
+
+        .topbar {
+            background: var(--green-deep);
+            color: white;
+
+            font-size: 12px;
+        }
+
+        .topbar-inner {
+            min-height: 38px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .topbar-left,
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .topbar-right a {
+            opacity: .8;
+            transition: .2s;
+        }
+
+        .topbar-right a:hover {
+            opacity: 1;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .header-wrap {
+            position: relative;
+            z-index: 100;
+            padding-top: 18px;
+        }
+
+        header {
+            background: rgba(255,255,255,.94);
+
+            border: 1px solid rgba(0,0,0,.06);
+
+            border-radius: 18px;
+
+            box-shadow:
+                0 12px 40px rgba(20,40,32,.07);
+
+            backdrop-filter: blur(18px);
+
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease;
+        }
+
+        header.scrolled {
+            box-shadow:
+                0 15px 50px rgba(20,40,32,.12);
+        }
+
+        .nav {
+            min-height: 76px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 20px 0 25px;
+        }
+
+
+        /* LOGO */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo-mark {
+            position: relative;
+
+            width: 34px;
+            height: 34px;
+
+            border-radius: 9px;
+
+            background: var(--green);
+
+            overflow: hidden;
+        }
+
+        .logo-mark::before,
+        .logo-mark::after {
+            content: "";
+
+            position: absolute;
+
+            width: 18px;
+            height: 5px;
+
+            background: white;
+
+            border-radius: 3px;
+
+            left: 8px;
+        }
+
+        .logo-mark::before {
+            top: 10px;
+            transform: rotate(-45deg);
+        }
+
+        .logo-mark::after {
+            top: 19px;
+            transform: rotate(45deg);
+        }
+
+
+        /* NAV LINKS */
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 31px;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .nav-links a {
+            position: relative;
+
+            color: #3e4843;
+
+            padding: 8px 0;
+
+            transition: color .25s ease;
+        }
+
+        .nav-links a::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            bottom: 0;
+
+            width: 0;
+            height: 2px;
+
+            background: var(--green);
+
+            transition: width .25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--green);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+
+        /* NAV RIGHT */
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-btn {
+            width: 40px;
+            height: 40px;
+
+            border: 1px solid var(--border);
+
+            background: white;
+
+            border-radius: 50%;
+
+            cursor: pointer;
+
+            font-size: 18px;
+
+            transition: .25s;
+        }
+
+        .search-btn:hover {
+            border-color: var(--green);
+            color: var(--green);
+            transform: rotate(8deg);
+        }
+
+
+        /* BUTTON */
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            min-height: 46px;
+
+            padding: 0 20px;
+
+            border-radius: 11px;
+
+            border: 1px solid transparent;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                transform .25s ease,
+                background .25s ease,
+                box-shadow .25s ease,
+                border-color .25s ease;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: white;
+
+            box-shadow:
+                0 8px 22px rgba(0,107,79,.18);
+        }
+
+        .btn-primary:hover {
+            background: var(--green-dark);
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                0 14px 30px rgba(0,107,79,.25);
+        }
+
+        .btn-outline {
+            background: white;
+            border-color: var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--green);
+            color: var(--green);
+
+            transform: translateY(-3px);
+        }
+
+
+        /* MOBILE BUTTON */
+
+        .mobile-toggle {
+            display: none;
+
+            width: 42px;
+            height: 42px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 10px;
+
+            background: white;
+
+            cursor: pointer;
+
+            font-size: 21px;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero-section {
+            padding: 55px 0 100px;
+        }
+
+        .hero {
+            min-height: 690px;
+
+            display: grid;
+
+            grid-template-columns:
+                minmax(0, .95fr)
+                minmax(0, 1.05fr);
+
+            align-items: center;
+
+            gap: 70px;
+        }
+
+
+        /* HERO CONTENT */
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            color: var(--green);
+
+            font-size: 11px;
+            font-weight: 800;
+
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+
+            margin-bottom: 21px;
+
+            opacity: 0;
+            transform: translateY(20px);
+
+            animation:
+                heroUp .8s .2s forwards;
+        }
+
+        .eyebrow-dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: var(--green);
+
+            box-shadow:
+                0 0 0 5px rgba(0,107,79,.08);
+        }
+
+        .hero h1 {
+            max-width: 720px;
+
+            font-size: clamp(
+                50px,
+                6vw,
+                78px
+            );
+
+            line-height: .98;
+
+            letter-spacing: -4px;
+
+            color: var(--black);
+
+            opacity: 0;
+            transform: translateY(30px);
+
+            animation:
+                heroUp .9s .35s forwards;
+        }
+
+        .hero h1 em {
+            color: var(--green);
+            font-style: normal;
+        }
+
+        .hero-description {
+            max-width: 620px;
+
+            color: var(--muted);
+
+            font-size: 16px;
+
+            line-height: 1.8;
+
+            margin-top: 28px;
+
+            opacity: 0;
+            transform: translateY(25px);
+
+            animation:
+                heroUp .8s .5s forwards;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-top: 33px;
+
+            opacity: 0;
+            transform: translateY(20px);
+
+            animation:
+                heroUp .8s .65s forwards;
+        }
+
+
+        /* HERO MINI INFO */
+
+        .hero-info {
+            display: flex;
+
+            gap: 34px;
+
+            margin-top: 52px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid var(--border);
+
+            opacity: 0;
+            transform: translateY(20px);
+
+            animation:
+                heroUp .8s .8s forwards;
+        }
+
+        .hero-info-item strong {
+            display: block;
+
+            font-size: 25px;
+
+            letter-spacing: -1px;
+        }
+
+        .hero-info-item span {
+            display: block;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            margin-top: 2px;
+        }
+
+
+        /* =====================================================
+           HERO VISUAL
+        ===================================================== */
+
+        .hero-visual {
+            position: relative;
+
+            min-height: 610px;
+
+            opacity: 0;
+            transform: translateX(40px) scale(.97);
+
+            animation:
+                heroVisual 1.1s .25s forwards;
+        }
+
+        .hero-main-image {
+            position: absolute;
+
+            right: 0;
+            top: 0;
+
+            width: 90%;
+            height: 570px;
+
+            object-fit: cover;
+
+            border-radius: 32px;
+
+            box-shadow:
+                0 35px 90px rgba(23,40,34,.18);
+        }
+
+        /* Gradient over image */
+
+        .hero-main-image-wrap {
+            position: absolute;
+
+            right: 0;
+            top: 0;
+
+            width: 90%;
+            height: 570px;
+
+            overflow: hidden;
+
+            border-radius: 32px;
+        }
+
+        .hero-main-image-wrap img {
+            height: 100%;
+
+            object-fit: cover;
+
+            transform: scale(1.04);
+
+            transition:
+                transform 1.2s ease;
+        }
+
+        .hero-main-image-wrap:hover img {
+            transform: scale(1.09);
+        }
+
+        .hero-image-overlay {
+            position: absolute;
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,40,30,.15),
+                    transparent 45%,
+                    rgba(0,0,0,.3)
+                );
+        }
+
+
+        /* IMAGE LABEL */
+
+        .image-label {
+            position: absolute;
+
+            right: 25px;
+            top: 25px;
+
+            background: rgba(255,255,255,.92);
+
+            border-radius: 13px;
+
+            padding: 13px 16px;
+
+            box-shadow:
+                0 15px 35px rgba(0,0,0,.1);
+
+            backdrop-filter: blur(10px);
+        }
+
+        .image-label small {
+            color: var(--muted);
+
+            display: block;
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+        .image-label strong {
+            display: block;
+
+            font-size: 15px;
+
+            margin-top: 2px;
+        }
+
+
+        /* FLOATING PRODUCT CARD */
+
+        .floating-product {
+            position: absolute;
+
+            left: -20px;
+            bottom: 70px;
+
+            width: 245px;
+
+            background: rgba(255,255,255,.97);
+
+            border: 1px solid rgba(0,0,0,.06);
+
+            border-radius: 18px;
+
+            padding: 18px;
+
+            box-shadow:
+                0 25px 60px rgba(0,0,0,.14);
+
+            animation:
+                floatCard 4s ease-in-out infinite;
+        }
+
+        .floating-product-top {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 13px;
+        }
+
+        .floating-icon {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 11px;
+
+            background: var(--green-soft);
+
+            display: grid;
+            place-items: center;
+
+            color: var(--green);
+
+            font-size: 19px;
+        }
+
+        .floating-product small {
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .floating-product strong {
+            display: block;
+
+            font-size: 14px;
+        }
+
+        .floating-product-bottom {
+            display: flex;
+            justify-content: space-between;
+
+            border-top: 1px solid var(--border);
+
+            padding-top: 12px;
+
+            font-size: 11px;
+        }
+
+        .stock {
+            color: var(--green);
+
+            font-weight: 700;
+        }
+
+
+        /* FLOATING NUMBER */
+
+        .floating-number {
+            position: absolute;
+
+            right: -20px;
+            bottom: 5px;
+
+            width: 180px;
+
+            padding: 20px;
+
+            border-radius: 18px;
+
+            background: var(--green);
+
+            color: white;
+
+            box-shadow:
+                0 25px 55px rgba(0,80,60,.25);
+
+            animation:
+                floatCard 4.5s .5s ease-in-out infinite;
+        }
+
+        .floating-number strong {
+            display: block;
+
+            font-size: 34px;
+
+            letter-spacing: -2px;
+        }
+
+        .floating-number span {
+            font-size: 11px;
+
+            color: rgba(255,255,255,.7);
+        }
+
+
+        @keyframes heroUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes heroVisual {
+            to {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        @keyframes floatCard {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+
+        /* =====================================================
+           TRUST STRIP
+        ===================================================== */
+
+        .trust-strip {
+            background: white;
+
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .trust {
+            min-height: 100px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 30px;
+        }
+
+        .trust-text {
+            color: var(--muted);
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+        .trust-items {
+            display: flex;
+
+            align-items: center;
+
+            gap: 45px;
+        }
+
+        .trust-item {
+            color: #4d5954;
+
+            font-weight: 800;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+           GENERAL SECTION
+        ===================================================== */
+
+        section.content-section {
+            padding: 120px 0;
+        }
+
+        .section-heading {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: end;
+
+            gap: 50px;
+
+            margin-bottom: 48px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(
+                36px,
+                4vw,
+                58px
+            );
+
+            line-height: .98;
+
+            letter-spacing: -3px;
+
+            color: var(--black);
+        }
+
+        .section-heading p {
+            max-width: 510px;
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+
+        /* =====================================================
+           PRODUCTS
+        ===================================================== */
+
+        .products-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 17px;
+        }
+
+        .product-card {
+            position: relative;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius);
+
+            overflow: hidden;
+
+            transition:
+                transform .35s ease,
+                box-shadow .35s ease,
+                border-color .35s ease;
+
+            opacity: 0;
+            transform: translateY(35px);
+        }
+
+        .product-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card:hover {
+            transform: translateY(-9px);
+
+            border-color:
+                rgba(0,107,79,.25);
+
+            box-shadow:
+                0 25px 55px rgba(25,45,37,.09);
+        }
+
+        .product-image {
+            position: relative;
+
+            height: 245px;
+
+            overflow: hidden;
+        }
+
+        .product-image img {
+            height: 100%;
+
+            object-fit: cover;
+
+            transition:
+                transform .6s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.07);
+        }
+
+        .product-number {
+            position: absolute;
+
+            left: 16px;
+            top: 16px;
+
+            background: rgba(255,255,255,.9);
+
+            padding: 6px 9px;
+
+            border-radius: 8px;
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .product-content {
+            padding: 22px;
+        }
+
+        .product-content small {
+            color: var(--green);
+
+            font-size: 10px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .product-content h3 {
+            font-size: 20px;
+
+            letter-spacing: -.5px;
+
+            margin: 7px 0 8px;
+        }
+
+        .product-content p {
+            color: var(--muted);
+
+            font-size: 12px;
+
+            line-height: 1.65;
+        }
+
+        .product-arrow {
+            margin-top: 18px;
+
+            color: var(--green);
+
+            font-size: 12px;
+
+            font-weight: 800;
+        }
+
+
+        /* =====================================================
+           DARK INDUSTRIES
+        ===================================================== */
+
+        .industries-section {
+            background: var(--green-deep);
+
+            color: white;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .industries-section::before {
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,.05);
+
+            right: -180px;
+            top: -180px;
+        }
+
+        .industries-section .section-heading h2 {
+            color: white;
+        }
+
+        .industries-section .section-heading p {
+            color: rgba(255,255,255,.62);
+        }
+
+        .industry-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 15px;
+        }
+
+        .industry-card {
+            position: relative;
+
+            height: 320px;
+
+            overflow: hidden;
+
+            border-radius: 20px;
+
+            background: #173f34;
+
+            opacity: 0;
+
+            transform: translateY(35px);
+
+            transition:
+                opacity .7s ease,
+                transform .7s ease;
+        }
+
+        .industry-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .industry-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .industry-card img {
+            height: 100%;
+
+            object-fit: cover;
+
+            opacity: .7;
+
+            transition:
+                transform .7s ease,
+                opacity .4s ease;
+        }
+
+        .industry-card:hover img {
+            transform: scale(1.08);
+
+            opacity: .9;
+        }
+
+        .industry-overlay {
+            position: absolute;
+
+            inset: 0;
+
+            padding: 24px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: end;
+
+            background:
+                linear-gradient(
+                    transparent 20%,
+                    rgba(0,0,0,.78)
+                );
+        }
+
+        .industry-overlay small {
+            font-size: 9px;
+
+            color: rgba(255,255,255,.55);
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+        }
+
+        .industry-overlay h3 {
+            font-size: 24px;
+
+            margin-top: 4px;
+        }
+
+        .industry-overlay p {
+            color: rgba(255,255,255,.7);
+
+            font-size: 11px;
+
+            margin-top: 4px;
+        }
+
+
+        /* =====================================================
+           FEATURE
+        ===================================================== */
+
+        .feature {
+            display: grid;
+
+            grid-template-columns:
+                .9fr 1.1fr;
+
+            gap: 85px;
+
+            align-items: center;
+        }
+
+        .feature-image {
+            position: relative;
+
+            opacity: 0;
+
+            transform: translateX(-35px);
+
+            transition:
+                opacity .8s ease,
+                transform .8s ease;
+        }
+
+        .feature-image.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .feature-image-main {
+            height: 530px;
+
+            object-fit: cover;
+
+            border-radius: 28px;
+
+            box-shadow:
+                0 30px 70px rgba(20,40,32,.12);
+        }
+
+        .feature-cert {
+            position: absolute;
+
+            right: -25px;
+            bottom: 30px;
+
+            background: white;
+
+            padding: 19px 22px;
+
+            border-radius: 17px;
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,.12);
+        }
+
+        .feature-cert small {
+            display: block;
+
+            color: var(--muted);
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+        .feature-cert strong {
+            display: block;
+
+            color: var(--green);
+
+            font-size: 32px;
+
+            line-height: 1;
+
+            margin: 4px 0;
+        }
+
+        .feature-content {
+            opacity: 0;
+
+            transform: translateX(35px);
+
+            transition:
+                opacity .8s ease .15s,
+                transform .8s ease .15s;
+        }
+
+        .feature-content.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .feature-content h2 {
+            font-size: clamp(
+                40px,
+                4.5vw,
+                62px
+            );
+
+            line-height: .96;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 25px;
+        }
+
+        .feature-content > p {
+            color: var(--muted);
+
+            max-width: 590px;
+
+            font-size: 14px;
+
+            line-height: 1.8;
+
+            margin-bottom: 27px;
+        }
+
+        .checks {
+            list-style: none;
+
+            display: grid;
+
+            gap: 13px;
+
+            margin-bottom: 30px;
+        }
+
+        .checks li {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            font-size: 13px;
+
+            font-weight: 600;
+        }
+
+        .check {
+            width: 23px;
+            height: 23px;
+
+            border-radius: 50%;
+
+            background: var(--green-soft);
+
+            color: var(--green);
+
+            display: grid;
+
+            place-items: center;
+
+            font-size: 11px;
+        }
+
+
+        /* =====================================================
+           MATERIALS
+        ===================================================== */
+
+        .materials-section {
+            background: white;
+        }
+
+        .material-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(5, 1fr);
+
+            gap: 12px;
+        }
+
+        .material {
+            padding: 27px 20px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 16px;
+
+            transition:
+                transform .3s ease,
+                border-color .3s ease,
+                background .3s ease;
+        }
+
+        .material:hover {
+            transform: translateY(-5px);
+
+            border-color: rgba(0,107,79,.3);
+
+            background: var(--green-soft);
+        }
+
+        .material strong {
+            font-size: 25px;
+
+            letter-spacing: -1px;
+        }
+
+        .material span {
+            display: block;
+
+            color: var(--muted);
+
+            font-size: 11px;
+
+            margin-top: 4px;
+        }
+
+
+        /* =====================================================
+           CUSTOM SECTION
+        ===================================================== */
+
+        .custom-box {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            overflow: hidden;
+
+            border-radius: 30px;
+
+            background: #eaf0ed;
+
+            min-height: 540px;
+        }
+
+        .custom-image {
+            position: relative;
+
+            overflow: hidden;
+        }
+
+        .custom-image img {
+            height: 100%;
+
+            object-fit: cover;
+
+            transition:
+                transform 1s ease;
+        }
+
+        .custom-box:hover .custom-image img {
+            transform: scale(1.05);
+        }
+
+        .custom-content {
+            padding: 75px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+        .custom-content h2 {
+            font-size: clamp(
+                40px,
+                4vw,
+                60px
+            );
+
+            line-height: .96;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 23px;
+        }
+
+        .custom-content p {
+            max-width: 500px;
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.8;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =====================================================
+           CTA
+        ===================================================== */
+
+        .cta-section {
+            padding: 110px 0;
+        }
+
+        .cta-box {
+            position: relative;
+
+            overflow: hidden;
+
+            background: var(--green);
+
+            color: white;
+
+            border-radius: 28px;
+
+            padding: 72px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 40px;
+        }
+
+        .cta-box::before {
+            content: "";
+
+            position: absolute;
+
+            width: 420px;
+            height: 420px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(255,255,255,.1);
+
+            right: -130px;
+            top: -180px;
+        }
+
+        .cta-box h2 {
+            position: relative;
+
+            max-width: 750px;
+
+            font-size: clamp(
+                38px,
+                4vw,
+                58px
+            );
+
+            line-height: .98;
+
+            letter-spacing: -3px;
+        }
+
+        .cta-box p {
+            position: relative;
+
+            max-width: 600px;
+
+            margin-top: 17px;
+
+            color: rgba(255,255,255,.7);
+
+            font-size: 13px;
+        }
+
+        .cta-box .btn {
+            position: relative;
+
+            flex-shrink: 0;
+
+            background: white;
+
+            color: var(--green);
+
+            min-width: 175px;
+        }
+
+        .cta-box .btn:hover {
+            background: #f4f7f5;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            background: #10251f;
+
+            color: white;
+
+            padding: 75px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+
+            grid-template-columns:
+                1.6fr 1fr 1fr 1fr;
+
+            gap: 55px;
+        }
+
+        .footer-brand p {
+            max-width: 350px;
+
+            color: rgba(255,255,255,.5);
+
+            font-size: 13px;
+
+            line-height: 1.8;
+
+            margin-top: 20px;
+        }
+
+        footer h4 {
+            font-size: 13px;
+
+            margin-bottom: 18px;
+        }
+
+        footer ul {
+            list-style: none;
+
+            display: grid;
+
+            gap: 10px;
+        }
+
+        footer li,
+        footer a {
+            color: rgba(255,255,255,.5);
+
+            font-size: 12px;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 20px;
+
+            border-top: 1px solid rgba(255,255,255,.09);
+
+            margin-top: 55px;
+
+            padding-top: 24px;
+
+            color: rgba(255,255,255,.35);
+
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           SCROLL PROGRESS
+        ===================================================== */
+
+        .scroll-progress {
+            position: fixed;
+
+            left: 0;
+            top: 0;
+
+            width: 0;
+            height: 3px;
+
+            background: var(--green);
+
+            z-index: 10000;
+        }
+
+
+        /* =====================================================
+           SEARCH OVERLAY
+        ===================================================== */
+
+        .search-overlay {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 2000;
+
+            background: rgba(5,30,23,.55);
+
+            backdrop-filter: blur(10px);
+
+            display: flex;
+
+            align-items: flex-start;
+
+            justify-content: center;
+
+            padding-top: 130px;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition: .3s;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-box {
+            width: min(700px, calc(100% - 40px));
+
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 10px;
+
+            display: flex;
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,.2);
+        }
+
+        .search-box input {
+            flex: 1;
+
+            border: none;
+
+            outline: none;
+
+            padding: 18px;
+
+            font-size: 15px;
+        }
+
+        .search-close {
+            width: 50px;
+
+            border: none;
+
+            background: transparent;
+
+            font-size: 22px;
+
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1100px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+
+                gap: 35px;
+            }
+
+            .hero-content {
+                order: 1;
+            }
+
+            .hero-visual {
+                order: 0;
+
+                min-height: 540px;
+            }
+
+            .hero-main-image-wrap {
+                width: 92%;
+            }
+
+            .products-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .industry-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .feature {
+                grid-template-columns: 1fr;
+
+                gap: 55px;
+            }
+
+            .material-grid {
+                grid-template-columns:
+                    repeat(3, 1fr);
+            }
+
+            .footer-grid {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+        }
+
+
+        @media (max-width: 700px) {
+
+            .container {
+                width: calc(100% - 30px);
+            }
+
+            .topbar-left {
+                display: none;
+            }
+
+            .topbar-inner {
+                justify-content: center;
+            }
+
+            .nav-right .btn,
+            .search-btn {
+                display: none;
+            }
+
+            .hero-section {
+                padding: 35px 0 75px;
+            }
+
+            .hero h1 {
+                font-size: 49px;
+
+                letter-spacing: -2.5px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+            .hero-info {
+                gap: 20px;
+
+                flex-wrap: wrap;
+            }
+
+            .hero-visual {
+                min-height: 430px;
+            }
+
+            .hero-main-image-wrap {
+                width: 100%;
+
+                height: 430px;
+            }
+
+            .floating-product {
+                left: 10px;
+
+                bottom: 35px;
+
+                width: 215px;
+            }
+
+            .floating-number {
+                right: 5px;
+
+                width: 145px;
+
+                padding: 16px;
+            }
+
+            .floating-number strong {
+                font-size: 28px;
+            }
+
+            .trust {
+                padding: 25px 0;
+
+                flex-direction: column;
+
+                justify-content: center;
+            }
+
+            .trust-items {
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                gap: 18px;
+            }
+
+            section.content-section {
+                padding: 80px 0;
+            }
+
+            .section-heading {
+                flex-direction: column;
+
+                align-items: flex-start;
+
+                gap: 20px;
+            }
+
+            .section-heading h2 {
+                font-size: 42px;
+            }
+
+            .products-grid,
+            .industry-grid,
+            .material-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-image-main {
+                height: 420px;
+            }
+
+            .feature-cert {
+                right: 12px;
+            }
+
+            .custom-box {
+                grid-template-columns: 1fr;
+            }
+
+            .custom-image {
+                min-height: 330px;
+            }
+
+            .custom-content {
+                padding: 45px 28px;
+            }
+
+            .cta-section {
+                padding: 75px 0;
+            }
+
+            .cta-box {
+                padding: 45px 28px;
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     LOADER
+===================================================== -->
+
+<div class="loader">
+
+    <div class="loader-inner">
+
+        <div class="loader-logo"></div>
+
+        <span>TOBSTEEL</span>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     SCROLL PROGRESS
+===================================================== -->
+
+<div class="scroll-progress"></div>
+
+
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<div class="search-overlay" id="searchOverlay">
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            placeholder="Search products, materials..."
+        >
+
+        <button
+            class="search-close"
+            onclick="closeSearch()"
+        >
+            ×
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     TOP BAR
+===================================================== -->
+
+<div class="topbar">
+
+    <div class="container topbar-inner">
+
+        <div class="topbar-left">
+
+            <span>
+                Stainless Steel Specialists
+            </span>
+
+            <span>
+                Worldwide Shipping
+            </span>
+
+        </div>
+
+        <div class="topbar-right">
+
+            <a href="tel:+49794160730">
+                +49 7941 6073-0
+            </a>
+
+            <a href="mailto:info@tobsteel.com">
+                info@tobsteel.com
+            </a>
+
+            <span>
+                EN
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<div class="header-wrap">
+
+    <div class="container">
+
+        <header id="header">
+
+            <div class="nav">
+
+
+                <a
+                    href="#"
+                    class="logo"
+                >
+
+                    <div class="logo-mark"></div>
+
+                    <span>
+                        TOBSTEEL
+                    </span>
+
+                </a>
+
+
+                <nav class="nav-links">
+
+                    <a href="#products">
+                        Products
+                    </a>
+
+                    <a href="#materials">
+                        Materials
+                    </a>
+
+                    <a href="#industries">
+                        Industries
+                    </a>
+
+                    <a href="#custom">
+                        Custom Parts
+                    </a>
+
+                    <a href="#company">
+                        Company
+                    </a>
+
+                </nav>
+
+
+                <div class="nav-right">
+
+                    <button
+                        class="search-btn"
+                        onclick="openSearch()"
+                        aria-label="Search"
+                    >
+                        ⌕
+                    </button>
+
+                    <a
+                        href="#contact"
+                        class="btn btn-primary"
+                    >
+                        Request a Quote
+                    </a>
+
+                    <button
+                        class="mobile-toggle"
+                        onclick="toggleMobileMenu()"
+                    >
+                        ☰
+                    </button>
+
+                </div>
+
+            </div>
+
+        </header>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero-section">
+
+    <div class="container hero">
+
+
+        <!-- HERO TEXT -->
+
+        <div class="hero-content">
+
+            <div class="eyebrow">
+
+                <span class="eyebrow-dot"></span>
+
+                Stainless Steel Specialists
+
+            </div>
+
+
+            <h1>
+
+                Connections built
+                for <em>extreme</em>
+                conditions.
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                High-quality stainless steel fasteners and
+                highly corrosion-resistant connecting elements
+                for construction, solar, offshore and industrial
+                applications.
+
+            </p>
+
+
+            <div class="hero-actions">
+
+                <a
+                    href="#products"
+                    class="btn btn-primary"
+                >
+                    Explore Products
+                    <span>→</span>
+                </a>
+
+                <a
+                    href="#contact"
+                    class="btn btn-outline"
+                >
+                    Talk to an Expert
+                </a>
+
+            </div>
+
+
+            <div class="hero-info">
+
+                <div class="hero-info-item">
+
+                    <strong
+                        class="counter"
+                        data-target="25000"
+                    >
+                        0
+                    </strong>
+
+                    <span>
+                        Products available
+                    </span>
+
+                </div>
+
+
+                <div class="hero-info-item">
+
+                    <strong>
+                        5
+                    </strong>
+
+                    <span>
+                        Corrosion classes
+                    </span>
+
+                </div>
+
+
+                <div class="hero-info-item">
+
+                    <strong>
+                        20+
+                    </strong>
+
+                    <span>
+                        Years of expertise
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO VISUAL -->
+
+        <div class="hero-visual">
+
+
+            <div class="hero-main-image-wrap">
+
+                <img
+                    src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1400&q=90"
+                    alt="Industrial stainless steel manufacturing"
+                >
+
+                <div class="hero-image-overlay"></div>
+
+            </div>
+
+
+            <div class="image-label">
+
+                <small>
+                    Made for demanding applications
+                </small>
+
+                <strong>
+                    Stainless Steel
+                </strong>
+
+            </div>
+
+
+            <div class="floating-product">
+
+                <div class="floating-product-top">
+
+                    <div class="floating-icon">
+                        ⚙
+                    </div>
+
+                    <div>
+
+                        <small>
+                            Featured category
+                        </small>
+
+                        <strong>
+                            Fasteners & Components
+                        </strong>
+
+                    </div>
+
+                </div>
+
+                <div class="floating-product-bottom">
+
+                    <span>
+                        25,000+ products
+                    </span>
+
+                    <span class="stock">
+                        ● In stock
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="floating-number">
+
+                <strong>
+                    100+
+                </strong>
+
+                <span>
+                    Employees & specialists
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     TRUST
+===================================================== -->
+
+<div class="trust-strip">
+
+    <div class="container trust">
+
+        <span class="trust-text">
+            Quality & engineering standards
+        </span>
+
+        <div class="trust-items">
+
+            <span class="trust-item">
+                DIN
+            </span>
+
+            <span class="trust-item">
+                ISO
+            </span>
+
+            <span class="trust-item">
+                ETA
+            </span>
+
+            <span class="trust-item">
+                TÜV
+            </span>
+
+            <span class="trust-item">
+                ISO 9001
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     PRODUCTS
+===================================================== -->
+
+<section
+    id="products"
+    class="content-section"
+>
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <div class="eyebrow">
+                    <span class="eyebrow-dot"></span>
+                    Product Portfolio
+                </div>
+
+                <h2>
+                    The right connection<br>
+                    starts here.
+                </h2>
+
+            </div>
+
+
+            <p>
+
+                From standard DIN and ISO fasteners to
+                highly corrosion-resistant special parts.
+                More than 25,000 products are available
+                for demanding applications.
+
+            </p>
+
+        </div>
+
+
+        <div class="products-grid">
+
+
+            <article class="product-card reveal">
+
+                <div class="product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1586864387967-d02ef85d93e8?auto=format&fit=crop&w=900&q=85"
+                        alt="Stainless steel screws"
+                    >
+
+                    <span class="product-number">
+                        01
+                    </span>
+
+                </div>
+
+                <div class="product-content">
+
+                    <small>
+                        STANDARD FASTENERS
+                    </small>
+
+                    <h3>
+                        Stainless Steel Screws
+                    </h3>
+
+                    <p>
+                        DIN and ISO standard screws for
+                        demanding construction and
+                        industrial applications.
+                    </p>
+
+                    <div class="product-arrow">
+                        Explore category →
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="product-card reveal">
+
+                <div class="product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=900&q=85"
+                        alt="Threaded rods"
+                    >
+
+                    <span class="product-number">
+                        02
+                    </span>
+
+                </div>
+
+                <div class="product-content">
+
+                    <small>
+                        LONG PRODUCTS
+                    </small>
+
+                    <h3>
+                        Threaded Rods
+                    </h3>
+
+                    <p>
+                        High-quality threaded rods available
+                        in different materials, lengths
+                        and specifications.
+                    </p>
+
+                    <div class="product-arrow">
+                        Explore category →
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="product-card reveal">
+
+                <div class="product-image">
+
+                    <img
+                        src="https://www.expresskuwait.com/cdn/shop/collections/nuts-and-washer-ms-ss-675951_1350x795.jpg?v=1634029086"
+                        alt="Stainless steel nuts and washers"
+                    >
+
+                    <span class="product-number">
+                        03
+                    </span>
+
+                </div>
+
+                <div class="product-content">
+
+                    <small>
+                        COMPONENTS
+                    </small>
+
+                    <h3>
+                        Nuts & Washers
+                    </h3>
+
+                    <p>
+                        Reliable connecting components
+                        matched to the right screw and
+                        application.
+                    </p>
+
+                    <div class="product-arrow">
+                        Explore category →
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <article class="product-card reveal">
+
+                <div class="product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&w=900&q=85"
+                        alt="Custom stainless steel parts"
+                    >
+
+                    <span class="product-number">
+                        04
+                    </span>
+
+                </div>
+
+                <div class="product-content">
+
+                    <small>
+                        TOBCUSTOM
+                    </small>
+
+                    <h3>
+                        Special Parts
+                    </h3>
+
+                    <p>
+                        Custom connecting elements
+                        manufactured according to your
+                        exact requirements.
+                    </p>
+
+                    <div class="product-arrow">
+                        Explore category →
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     INDUSTRIES
+===================================================== -->
+
+<section
+    id="industries"
+    class="content-section industries-section"
+>
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <div class="eyebrow">
+
+                    <span class="eyebrow-dot"></span>
+
+                    Industry Solutions
+
+                </div>
+
+                <h2>
+                    Built for places<br>
+                    others can't.
+                </h2>
+
+            </div>
+
+
+            <p>
+
+                Every application has different requirements.
+                TOBSTEEL combines the right material,
+                corrosion resistance and fastening solution
+                for each environment.
+
+            </p>
+
+        </div>
+
+
+        <div class="industry-grid">
+
+
+            <article class="industry-card reveal">
+
+                <img
+                    src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1000&q=85"
+                    alt="Solar technology"
+                >
+
+                <div class="industry-overlay">
+
+                    <small>
+                        01 / Energy
+                    </small>
+
+                    <h3>
+                        Solar Technology
+                    </h3>
+
+                    <p>
+                        Reliable fastening systems for
+                        photovoltaic projects.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="industry-card reveal">
+
+                <img
+                    src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=85"
+                    alt="Offshore engineering"
+                >
+
+                <div class="industry-overlay">
+
+                    <small>
+                        02 / Marine
+                    </small>
+
+                    <h3>
+                        Offshore
+                    </h3>
+
+                    <p>
+                        Corrosion-resistant connections
+                        for harsh environments.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="industry-card reveal">
+
+                <img
+                    src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=1000&q=85"
+                    alt="Facade construction"
+                >
+
+                <div class="industry-overlay">
+
+                    <small>
+                        03 / Construction
+                    </small>
+
+                    <h3>
+                        Facades & Windows
+                    </h3>
+
+                    <p>
+                        Durable fastening solutions for
+                        modern building systems.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="industry-card reveal">
+
+                <img
+                    src="https://images.unsplash.com/photo-1473445361085-b9a07f55608b?auto=format&fit=crop&w=1000&q=85"
+                    alt="Timber construction"
+                >
+
+                <div class="industry-overlay">
+
+                    <small>
+                        04 / Construction
+                    </small>
+
+                    <h3>
+                        Timber Construction
+                    </h3>
+
+                    <p>
+                        High-performance stainless steel
+                        connections for timber structures.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="industry-card reveal">
+
+                <img
+                    src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=85"
+                    alt="Tunnel construction"
+                >
+
+                <div class="industry-overlay">
+
+                    <small>
+                        05 / Infrastructure
+                    </small>
+
+                    <h3>
+                        Tunnel & Bridge
+                    </h3>
+
+                    <p>
+                        Built for demanding infrastructure
+                        environments.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+            <article class="industry-card reveal">
+
+                <img
+                    src="https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=1000&q=85"
+                    alt="Industrial plant"
+                >
+
+                <div class="industry-overlay">
+
+                    <small>
+                        06 / Industry
+                    </small>
+
+                    <h3>
+                        Plant & Pipeline
+                    </h3>
+
+                    <p>
+                        Reliable connections for
+                        industrial applications.
+                    </p>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FEATURED SOLAR
+===================================================== -->
+
+<section class="content-section">
+
+    <div class="container feature">
+
+
+        <div class="feature-image reveal">
+
+            <img
+                class="feature-image-main"
+                src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=90"
+                alt="Solar fastening system"
+            >
+
+            <div class="feature-cert">
+
+                <small>
+                    Certified solution
+                </small>
+
+                <strong>
+                    ETA
+                </strong>
+
+                <span>
+                    Approved fastening system
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="feature-content reveal">
+
+            <div class="eyebrow">
+
+                <span class="eyebrow-dot"></span>
+
+                Featured Solution
+
+            </div>
+
+
+            <h2>
+                Built for the
+                solar industry.
+            </h2>
+
+
+            <p>
+
+                TOBSTEEL offers reliable stainless steel
+                fastening solutions for photovoltaic
+                installations — combining corrosion
+                resistance, tested performance and
+                practical installation.
+
+            </p>
+
+
+            <ul class="checks">
+
+                <li>
+                    <span class="check">✓</span>
+                    ETA-certified solutions
+                </li>
+
+                <li>
+                    <span class="check">✓</span>
+                    A2 / AISI 304 stainless steel
+                </li>
+
+                <li>
+                    <span class="check">✓</span>
+                    Wood & metric thread
+                </li>
+
+                <li>
+                    <span class="check">✓</span>
+                    Available directly from stock
+                </li>
+
+            </ul>
+
+
+            <a
+                href="#contact"
+                class="btn btn-primary"
+            >
+                Discuss your project →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     MATERIALS
+===================================================== -->
+
+<section
+    id="materials"
+    class="content-section materials-section"
+>
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+            <div>
+
+                <div class="eyebrow">
+
+                    <span class="eyebrow-dot"></span>
+
+                    Materials
+
+                </div>
+
+                <h2>
+                    The right steel<br>
+                    for every challenge.
+                </h2>
+
+            </div>
+
+
+            <p>
+
+                From conventional stainless steel to
+                highly corrosion-resistant special materials,
+                TOBSTEEL covers five corrosion resistance classes.
+
+            </p>
+
+        </div>
+
+
+        <div class="material-grid">
+
+
+            <div class="material reveal">
+
+                <strong>
+                    A2
+                </strong>
+
+                <span>
+                    1.4301 / 1.4567
+                </span>
+
+            </div>
+
+
+            <div class="material reveal">
+
+                <strong>
+                    A4
+                </strong>
+
+                <span>
+                    1.4401 / 1.4404
+                </span>
+
+            </div>
+
+
+            <div class="material reveal">
+
+                <strong>
+                    A5
+                </strong>
+
+                <span>
+                    1.4571
+                </span>
+
+            </div>
+
+
+            <div class="material reveal">
+
+                <strong>
+                    D6
+                </strong>
+
+                <span>
+                    1.4462 DUPLEX
+                </span>
+
+            </div>
+
+
+            <div class="material reveal">
+
+                <strong>
+                    A8
+                </strong>
+
+                <span>
+                    1.4529 HCR
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CUSTOM
+===================================================== -->
+
+<section
+    id="custom"
+    class="content-section"
+>
+
+    <div class="container">
+
+
+        <div class="custom-box reveal">
+
+
+            <div class="custom-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=1200&q=90"
+                    alt="Custom stainless steel manufacturing"
+                >
+
+            </div>
+
+
+            <div class="custom-content">
+
+                <div class="eyebrow">
+
+                    <span class="eyebrow-dot"></span>
+
+                    TOBCUSTOM
+
+                </div>
+
+
+                <h2>
+                    When standard
+                    isn't enough.
+                </h2>
+
+
+                <p>
+
+                    Need a special thread, head shape,
+                    drive or length?
+
+                    TOBSTEEL can provide custom stainless
+                    steel connecting elements according
+                    to your exact requirements.
+
+                </p>
+
+
+                <a
+                    href="#contact"
+                    class="btn btn-primary"
+                >
+                    Request a Custom Solution →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section
+    id="contact"
+    class="cta-section"
+>
+
+    <div class="container">
+
+
+        <div class="cta-box">
+
+
+            <div>
+
+                <h2>
+                    Have a challenging
+                    connection requirement?
+                </h2>
+
+                <p>
+
+                    Talk to the TOBSTEEL team about
+                    your application, material requirements
+                    and project.
+
+                </p>
+
+            </div>
+
+
+            <a
+                href="mailto:info@tobsteel.com"
+                class="btn"
+            >
+                Contact TOBSTEEL →
+            </a>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer id="company">
+
+    <div class="container">
+
+
+        <div class="footer-grid">
+
+
+            <div class="footer-brand">
+
+                <div class="logo">
+
+                    <div class="logo-mark"></div>
+
+                    <span>
+                        TOBSTEEL
+                    </span>
+
+                </div>
+
+
+                <p>
+
+                    High-quality stainless steel connecting
+                    elements and highly corrosion-resistant
+                    special materials for demanding applications.
+
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Products
+                </h4>
+
+                <ul>
+
+                    <li>
+                        <a href="#products">
+                            Stainless Steel Screws
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#products">
+                            Threaded Rods
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#products">
+                            Nuts & Washers
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#custom">
+                            Special Parts
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Industries
+                </h4>
+
+                <ul>
+
+                    <li>
+                        Solar Technology
+                    </li>
+
+                    <li>
+                        Offshore
+                    </li>
+
+                    <li>
+                        Tunnel & Bridge
+                    </li>
+
+                    <li>
+                        Timber Construction
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h4>
+                    Contact
+                </h4>
+
+                <ul>
+
+                    <li>
+                        Öhringen, Germany
+                    </li>
+
+                    <li>
+                        +49 7941 6073-0
+                    </li>
+
+                    <li>
+                        info@tobsteel.com
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 TOBSTEEL GmbH. All rights reserved.
+            </span>
+
+            <span>
+                Privacy · Legal Notice · Terms
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+    /* =====================================================
+       PAGE LOADER
+    ===================================================== */
+
+    window.addEventListener("load", () => {
+
+        setTimeout(() => {
+
+            document
+                .querySelector(".loader")
+                .classList
+                .add("hide");
+
+        }, 650);
+
+    });
+
+
+    /* =====================================================
+       HEADER SCROLL
+    ===================================================== */
+
+    const header =
+        document.querySelector("#header");
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            if (window.scrollY > 40) {
+
+                header.classList.add("scrolled");
+
+            } else {
+
+                header.classList.remove("scrolled");
+
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    /* =====================================================
+       SCROLL PROGRESS
+    ===================================================== */
+
+    const progress =
+        document.querySelector(".scroll-progress");
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            const scrollTop =
+                window.scrollY;
+
+            const documentHeight =
+                document.documentElement.scrollHeight -
+                window.innerHeight;
+
+            const percentage =
+                (scrollTop / documentHeight) * 100;
+
+            progress.style.width =
+                percentage + "%";
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    /* =====================================================
+       REVEAL ANIMATION
+    ===================================================== */
+
+    const revealElements =
+        document.querySelectorAll(".reveal");
+
+
+    const revealObserver =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(
+                    entry => {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target
+                                .classList
+                                .add("visible");
+
+                            revealObserver
+                                .unobserve(
+                                    entry.target
+                                );
+
+                        }
+
+                    }
+                );
+
+            },
+            {
+                threshold: .12
+            }
+        );
+
+
+    revealElements.forEach(
+        element => {
+
+            revealObserver.observe(
+                element
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       FEATURE REVEAL
+    ===================================================== */
+
+    const featureElements =
+        document.querySelectorAll(
+            ".feature-image, .feature-content"
+        );
+
+
+    const featureObserver =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(
+                    entry => {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target
+                                .classList
+                                .add("visible");
+
+                        }
+
+                    }
+                );
+
+            },
+            {
+                threshold: .2
+            }
+        );
+
+
+    featureElements.forEach(
+        element => {
+
+            featureObserver.observe(
+                element
+            );
+
+        }
+    );
+
+
+    /* =====================================================
+       COUNTER
+    ===================================================== */
+
+    const counters =
+        document.querySelectorAll(
+            ".counter"
+        );
+
+
+    let counterStarted = false;
+
+
+    function animateCounters() {
+
+        if (counterStarted) return;
+
+        counterStarted = true;
+
+
+        counters.forEach(
+            counter => {
+
+                const target =
+                    Number(
+                        counter.dataset.target
+                    );
+
+                const duration =
+                    1800;
+
+                const startTime =
+                    performance.now();
+
+
+                function update(currentTime) {
+
+                    const elapsed =
+                        currentTime -
+                        startTime;
+
+                    const progress =
+                        Math.min(
+                            elapsed / duration,
+                            1
+                        );
+
+
+                    const eased =
+                        1 -
+                        Math.pow(
+                            1 - progress,
+                            3
+                        );
+
+
+                    const value =
+                        Math.floor(
+                            eased * target
+                        );
+
+
+                    counter.textContent =
+                        value.toLocaleString();
+
+
+                    if (progress < 1) {
+
+                        requestAnimationFrame(
+                            update
+                        );
+
+                    } else {
+
+                        counter.textContent =
+                            target.toLocaleString() + "+";
+
+                    }
+
+                }
+
+
+                requestAnimationFrame(
+                    update
+                );
+
+            }
+        );
+
+    }
+
+
+    const counterObserver =
+        new IntersectionObserver(
+            entries => {
+
+                if (
+                    entries[0].isIntersecting
+                ) {
+
+                    animateCounters();
+
+                    counterObserver.disconnect();
+
+                }
+
+            },
+            {
+                threshold: .7
+            }
+        );
+
+
+    if (counters.length) {
+
+        counterObserver.observe(
+            counters[0]
+        );
+
+    }
+
+
+    /* =====================================================
+       SEARCH
+    ===================================================== */
+
+    const searchOverlay =
+        document.querySelector(
+            "#searchOverlay"
+        );
+
+
+    function openSearch() {
+
+        searchOverlay
+            .classList
+            .add("active");
+
+        document
+            .querySelector(
+                ".search-box input"
+            )
+            .focus();
+
+    }
+
+
+    function closeSearch() {
+
+        searchOverlay
+            .classList
+            .remove("active");
+
+    }
+
+
+    searchOverlay.addEventListener(
+        "click",
+        event => {
+
+            if (
+                event.target ===
+                searchOverlay
+            ) {
+
+                closeSearch();
+
+            }
+
+        }
+    );
+
+
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key === "Escape"
+            ) {
+
+                closeSearch();
+
+            }
+
+        }
+    );
+
+
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
+
+    function toggleMobileMenu() {
+
+        const nav =
+            document.querySelector(
+                ".nav-links"
+            );
+
+
+        const isOpen =
+            nav.classList.contains(
+                "mobile-open"
+            );
+
+
+        if (isOpen) {
+
+            nav.classList.remove(
+                "mobile-open"
+            );
+
+            nav.style.display =
+                "";
+
+        } else {
+
+            nav.classList.add(
+                "mobile-open"
+            );
+
+            nav.style.display =
+                "flex";
+
+            nav.style.position =
+                "fixed";
+
+            nav.style.top =
+                "132px";
+
+            nav.style.left =
+                "15px";
+
+            nav.style.right =
+                "15px";
+
+            nav.style.padding =
+                "25px";
+
+            nav.style.background =
+                "white";
+
+            nav.style.borderRadius =
+                "16px";
+
+            nav.style.flexDirection =
+                "column";
+
+            nav.style.alignItems =
+                "flex-start";
+
+            nav.style.boxShadow =
+                "0 25px 60px rgba(0,0,0,.12)";
+
+        }
+
+    }
+
+
+    /* =====================================================
+       HERO PARALLAX
+    ===================================================== */
+
+    const heroVisual =
+        document.querySelector(
+            ".hero-visual"
+        );
+
+
+    window.addEventListener(
+        "mousemove",
+        event => {
+
+            if (
+                window.innerWidth < 900
+            ) return;
+
+
+            const x =
+                (event.clientX /
+                    window.innerWidth -
+                    .5) * 10;
+
+
+            const y =
+                (event.clientY /
+                    window.innerHeight -
+                    .5) * 10;
+
+
+            heroVisual.style.transform =
+                `translate(${x}px, ${y}px)`;
+
+        }
+    );
+
+</script>
+
+</body>
+</html>
